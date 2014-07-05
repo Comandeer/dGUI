@@ -1,0 +1,29 @@
+{
+  "name": "dGUI",
+  "version": "0.0.0",
+  "authors": [
+    "Comandeer <comandeer@comandeer.pl>"
+  ],
+  "description": "Simple custom elements for webapps",
+  "main": "README.md",
+  "moduleType": [
+    "amd",
+    "globals"
+  ],
+  "keywords": [
+    "declarative",
+    "GUI"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "polymer": "Polymer/polymer#master"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

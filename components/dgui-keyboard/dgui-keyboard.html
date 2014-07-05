@@ -1,0 +1,324 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+Custom element displaying screen keyboard
+
+##### Example
+
+	<dgui-keyboard></dgui-keyboard>
+
+@element dgui-keyboard
+@blurb Custom element displaying screen keyboard
+@status alpha
+-->
+<polymer-element name="dgui-keyboard" attributes="for expanded">
+
+	<template>
+
+	<link href="dgui-keyboard.css" rel="stylesheet">
+
+	<button type="button" id="expander" class="expander" on-click="{{expanderClick}}" aria-controls="keyboard" aria-expanded="false"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAPCAIAAAHpA8MkAAACS0lEQVQ4y62SMWgTcRTGv2vT/5IDSQcTlCytS0Dq0kEyVXhGSocjw2mgRSxBYxRaWjpZqBHSDOVAKp7n0qUtXlRKlx5i/xALaofioB2uwung1BZsglwCXpbnkAqtQhzqb3oP3uP73sdTmLlcLgPIZDKdI6fdUxczZ2Pdd1/WFdu2AQAI7cUvXOkGqq/hmTqz729NeqZujxIz66aneKb+oTsFqK35OrBe7VdWbLuJowiQVtRNzw3YZ2bmokYhNDaytU/3h5o1xCID6VoDISA+v9d3PRsDsPd+fhtQPHM4v7qPtkTTVgfQBJCaKo0nwwXDiCBsGAbQaxilcHK8NJVCa8IzddKKzL5uenwcz9R95qJGuukpfPDu8rVCe93Cc6kcfKys77TzF02kFCLCPyEiN+BKjgLmQX2OOaBchXl3dGWXmTlwiaizp6fn1bM1bXrm5uzbB5nvjz+rt84sbf5IJNbH6rHzEzcmfgKhVuZCqBCqKoSAUEWXUFuFEH/LHSegXKUlFwKwtliuV7FfLv/pt7pTXlQBKA9zmvO10eaycO+Q4m/NjNzbbOCEhJOlZXimTkSkFd2Amf1KjnTTC5j9rclBfc4NmDnwTJ1yFZ+ZedcepcMQDw90ixoR0eEH51drODGRtNVxpI3nl6SUjpWOhpOGI6VcyEYRGbIcKaVT6u/q6is5UkrHGIhE05YjpVzKx4/s/09fod/ZDTx6MZ0Q9Te301aftXznnGi32PzyZCS/nV99eklt7sxeHdtoAIDyzR7OLuyf3Fc0u/ALCGZEPq6ARKkAAAAASUVORK5CYII=" alt="Pokaż/ukryj klawiaturę ekranową" title="Pokaż/ukryj klawiaturę ekranową"></button>
+
+	<ul class="keyboard" id="keyboard" aria-label="Klawiatura ekranowa">
+<li><button type="button" class="key" id="key-1" data-char="`" data-shiftChar="~" on-click="{{clickHandler}}">`</button></li><li><button type="button" class="key" id="key-2" data-char="1" data-shiftChar="!" on-click="{{clickHandler}}">1</button></li><li><button type="button" class="key" id="key-3" data-char="2" data-shiftChar="@" on-click="{{clickHandler}}">2</button></li><li><button type="button" class="key" id="key-4" data-char="3" data-shiftChar="#" on-click="{{clickHandler}}">3</button></li><li><button type="button" class="key" id="key-5" data-char="4" data-shiftChar="$" on-click="{{clickHandler}}">4</button></li><li><button type="button" class="key" id="key-6" data-char="5" data-shiftChar="%" on-click="{{clickHandler}}">5</button></li><li><button type="button" class="key" id="key-7" data-char="6" data-shiftChar="^" on-click="{{clickHandler}}">6</button></li><li><button type="button" class="key" id="key-8" data-char="7" data-shiftChar="&amp;" on-click="{{clickHandler}}">7</button></li><li><button type="button" class="key" id="key-9" data-char="8" data-shiftChar="*" on-click="{{clickHandler}}">8</button></li><li><button type="button" class="key" id="key-10" data-char="9" data-shiftChar="(" on-click="{{clickHandler}}">9</button></li><li><button type="button" class="key" id="key-11" data-char="0" data-shiftChar=")" on-click="{{clickHandler}}">0</button></li><li><button type="button" class="key" id="key-12" data-char="-" data-shiftChar="_" on-click="{{clickHandler}}">-</button></li><li><button type="button" class="key" id="key-13" data-char="=" data-shiftChar="+" on-click="{{clickHandler}}">=</button></li><li><button type="button" class="key" id="key-delete" data-action="delete" on-click="{{clickHandler}}" title="Backspace">←</button></li>
+
+<li><button id="key-tab" class="key" data-action="tab" on-click="{{clickHandler}}">Tab</button></li><li><button type="button" class="key" id="key-14" data-char="q" data-shiftChar="Q" on-click="{{clickHandler}}">q</button></li><li><button type="button" class="key" id="key-15" data-char="w" data-shiftChar="W" on-click="{{clickHandler}}">w</button></li><li><button type="button" class="key" id="key-16" data-char="e" data-shiftChar="E" data-altChar="ę" data-shiftAltChar="Ę" on-click="{{clickHandler}}">e</button></li><li><button type="button" class="key" id="key-17" data-char="r" data-shiftChar="R" on-click="{{clickHandler}}">r</button></li><li><button type="button" class="key" id="key-18" data-char="t" data-shiftChar="T" on-click="{{clickHandler}}">t</button></li><li><button type="button" class="key" id="key-19" data-char="y" data-shiftChar="Y" on-click="{{clickHandler}}">y</button></li><li><button type="button" class="key" id="key-20" data-char="u" data-shiftChar="U" on-click="{{clickHandler}}">u</button></li><li><button type="button" class="key" id="key-49" data-char="i" data-shiftChar="I" on-click="{{clickHandler}}">i</button></li><li><button type="button" class="key" id="key-21" data-char="o" data-shiftChar="O" data-altChar="ó" data-shiftAltChar="Ó" on-click="{{clickHandler}}">o</button></li><li><button type="button" class="key" id="key-22" data-char="p" data-shiftChar="P" on-click="{{clickHandler}}">p</button></li><li><button type="button" class="key" id="key-23" data-char="[" data-shiftChar="{" on-click="{{clickHandler}}">[</button></li><li><button type="button" class="key" id="key-24" data-char="]" data-shiftChar="}" on-click="{{clickHandler}}">]</button></li><li><button type="button" class="key" id="key-25" data-char="\" data-shiftChar="|" on-click="{{clickHandler}}">\</button></li>
+
+<li><button type="button" class="key" id="key-caps" data-action="caps" on-click="{{clickHandler}}">CapsLk</button></li><li><button type="button" class="key" data-char="a" id="key-26" data-shiftChar="A" data-altChar="ą" data-shiftAltChar="Ą" on-click="{{clickHandler}}">a</button></li><li><button type="button" class="key" id="key-27" data-char="s" data-shiftChar="S" data-altChar="ś" data-shiftAltChar="Ś" on-click="{{clickHandler}}">s</button></li><li><button type="button" class="key" id="key-28" data-char="d" data-shiftChar="D" on-click="{{clickHandler}}">d</button></li><li><button type="button" class="key" id="key-29" data-char="f" data-shiftChar="F" on-click="{{clickHandler}}">f</button></li><li><button type="button" class="key" id="key-30" data-char="g" data-shiftChar="G" on-click="{{clickHandler}}">g</button></li><li><button type="button" class="key" id="key-31" data-char="h" data-shiftChar="H" on-click="{{clickHandler}}">h</button></li><li><button type="button" class="key" id="key-32" data-char="j" data-shiftChar="J" on-click="{{clickHandler}}">j</button></li><li><button type="button" class="key" id="key-33" data-char="k" data-shiftChar="K" on-click="{{clickHandler}}">k</button></li><li><button type="button" class="key" id="key-34" data-char="l" data-shiftChar="L" data-altChar="ł" data-shiftAltChar="Ł" on-click="{{clickHandler}}">l</button></li><li><button type="button" class="key" id="key-35" data-char=";" data-shiftChar=":" on-click="{{clickHandler}}">;</button></li><li><button type="button" class="key" id="key-36" data-char="'" data-shiftChar='"' on-click="{{clickHandler}}">'</button></li><li><button type="button" class="key" id="key-enter" data-action="enter" on-click="{{clickHandler}}">Enter</button></li>
+
+<li class="smallMargin"><button type="button" class="key" id="key-shift-1" data-action="shift" on-click="{{clickHandler}}">Shift</button></li><li><button type="button" class="key" id="key-37" data-char="z" data-shiftChar="Z" data-altChar="ż" data-shiftAltChar="Ż" on-click="{{clickHandler}}">z</button></li><li><button type="button" class="key" id="key-38" data-char="x" data-shiftChar="X" data-altChar="ź" data-shiftAltChar="Ź" on-click="{{clickHandler}}">x</button></li><li><button type="button" class="key" id="key-39" data-char="c" data-shiftChar="C" data-altChar="ć" data-shiftAltChar="Ć" on-click="{{clickHandler}}">c</button></li><li><button type="button" class="key" id="key-40" data-char="v" data-shiftChar="V" on-click="{{clickHandler}}">v</button></li><li><button type="button" class="key" id="key-41" data-char="b" data-shiftChar="B" on-click="{{clickHandler}}">b</button></li><li><button type="button" class="key" id="key-42" data-char="n" data-shiftChar="N" data-altChar="ń" data-shiftAltChar="Ń" on-click="{{clickHandler}}">n</button></li><li><button type="button" class="key" id="key-43" data-char="m" data-shiftChar="M" on-click="{{clickHandler}}">m</button></li><li><button type="button" class="key" id="key-44" data-char="," data-shiftChar="<" on-click="{{clickHandler}}">,</button></li><li><button type="button" class="key" id="key-45" data-char="." data-shiftChar=">" on-click="{{clickHandler}}">.</button></li><li><button type="button" class="key" id="key-46" data-char="/" data-shiftChar="?" on-click="{{clickHandler}}">/</button></li><li><button type="button" class="key" id="key-shift-2" data-action="shift" on-click="{{clickHandler}}">Shift</button></li>
+
+<li class="bigMargin"><button type="button" class="key space" id="key-space" data-char=" " aria-label="Spacja" on-click="{{clickHandler}}">&nbsp;</button></li><li><button type="button" class="key" id="key-alt" data-action="alt" on-click="{{clickHandler}}">Alt</button></li>
+	</ul>
+	</template>
+
+	<script>
+	
+	(function()
+	{
+		var shift = false
+		,alt = false
+		,caps = false
+		,actions = {
+			caps: function()
+			{
+				caps = !caps;
+
+				return this.changeLayout();				
+			}
+			,shift: function()
+			{
+				shift = !shift;
+
+				return this.changeLayout();
+			}
+			,alt: function()
+			{
+				alt = !alt;
+
+				return this.changeLayout();
+			}
+			//TODO: is it even neccessary?
+			,tab: function()
+			{
+				var i = this.input
+				,tag = i.tagName.toLowerCase();
+
+				if(tag === 'textarea')
+					return insertAtCaret.call(i, '\t');
+			}
+			,enter: function()
+			{
+				var i = this.input
+				,tag = i.tagName.toLowerCase();
+
+				if(tag === 'input')
+					return i.form && i.form.submit();
+				else if(tag === 'textarea')
+					return insertAtCaret.call(i, '\n');
+			}
+			,delete: function()
+			{
+				var i = this.input;
+
+				deleteAtCaret.call(i);
+
+				return i.focus();
+			}
+		}
+		,resetModifiers = function()
+		{
+			if(shift)
+				actions.shift.apply(this, arguments);
+
+			if(alt)
+				actions.alt.apply(this, arguments);
+		}
+		//http://stackoverflow.com/questions/1865563/set-cursor-at-a-length-of-14-onfocus-of-a-textbox/1867393#1867393
+		,setCaret = function(pos)
+		{
+			if(this.createTextRange)
+			{
+				var textRange = this.createTextRange();
+
+				textRange.collapse(true);
+				textRange.moveEnd(pos);
+				textRange.moveStart(pos);
+				return textRange.select();
+			}
+			else if(this.setSelectionRange)
+				return this.setSelectionRange(pos, pos);
+
+			return false;
+		}
+		//http://jsfiddle.net/NaHTw/304/
+		,insertAtCaret = function(text)
+		{
+			var caretPos = this.selectionStart
+			,currentValue = this.value;
+
+			this.value = currentValue.substr(0, caretPos) + text + currentValue.substr(caretPos);
+
+			setCaret.call(this, caretPos + 1);
+		}
+		,deleteAtCaret = function()
+		{
+			var caretPos = this.selectionStart
+			,currentValue = this.value;
+
+			this.value = currentValue.substr(0, caretPos - 1) + currentValue.substr(caretPos);
+
+			setCaret.call(this, caretPos - 1);
+		};
+
+		Polymer({
+			/**
+			 * The `for` attribute links current keyboard instance to form control
+			 * 
+			 * @attribute for
+			 * @type string
+			 */
+			for: ''
+
+			/**
+			 * The expanded attribute controls visibility of keyboard
+			 *
+			 * @attribute expanded
+			 * @type boolean
+			 */
+			,expanded: false
+
+			/**
+			 * Indticates if the keyboard should be closed by clicking outside it or input controlled by it
+			 *
+			 * @attribute autohide
+			 * @type string
+			 */
+			,autohide: true
+
+			,ready: function()
+			{
+				var id = this.id = 'keyboard-' + (Math.round(Math.random() * 999999))
+				,expander = this.$.expander
+				,keyboard = this.$.keyboard;
+
+				expander.setAttribute('aria-controls', id);
+
+				if(!this.expanded)
+				{
+					keyboard.hidden = true;
+					expander.setAttribute('aria-expanded', false);
+				}
+				else
+					expander.setAttribute('aria-expanded', true);
+
+				this.input = document.getElementById(this.getAttribute('for'));
+
+				if(typeof this.getAttribute('autohide') === 'string' && ['false', 'no'].indexOf(this.getAttribute('autohide').toLowerCase()) !== -1)
+					this.autohide = false;
+			}
+
+			/**
+			 * The `expanderClick` method handles click on button
+			 * It toggles the visibility of keyboard
+			 *
+			 * @method expanderClick
+			 * @event click
+			 * @return void
+			 */
+			,expanderClick: function()
+			{
+				this.expanded = !this.expanded;
+			}
+
+			/**
+			 * Handles click on keyboard
+			 *
+			 * @method clickHandler
+			 * @event click
+			 * @return void
+			 * @param {Event} click event
+			 */
+			,clickHandler: function(e)
+			{
+				var button = e.target
+				,action = button.getAttribute('data-action')
+				,shifted = (caps && !shift) || (shift && !caps)
+				,i = this.input
+				,char;
+
+				if(action && actions[action])
+					return actions[action].apply(this, arguments);
+				
+				//get proper char && clean
+				if(shifted && alt)
+					char = button.getAttribute('data-shiftAltChar') || button.getAttribute('data-shiftChar');
+				else if(shifted)
+					char = button.getAttribute('data-shiftChar');
+				else if(alt)
+					char = button.getAttribute('data-altChar');
+				else
+					char = button.getAttribute('data-char');
+
+				if(!char)
+					char = button.getAttribute('data-char');
+
+				resetModifiers.apply(this, arguments);
+
+				if(i)
+					insertAtCaret.call(i, char) && i.focus();
+
+			}
+
+			/**
+			 * Change event for expanded attribute
+			 * 
+			 * @method expandedChanged
+			 * @event change
+			 * @return void
+			 * @param {Boolean} old value.
+			 * @param {Boolean} new value
+			 */
+			,expandedChanged:function(oldValue, newValue)
+			{
+				var $t = this
+				,expander = this.$.expander
+				,keyboard = this.$.keyboard
+				,documentClick = function click(e)
+				{
+					if(e.target === $t || e.target === $t.input)
+						return;
+
+					$t.expanded = false;
+					document.removeEventListener('click',click);
+				};
+
+				keyboard.hidden = !newValue;
+				expander.setAttribute('aria-expanded', newValue);
+
+				if(newValue && this.autohide)
+					document.addEventListener('click', documentClick);
+			}
+
+			/**
+			 * Changes layout according to modifiers
+			 *
+			 * @method changeLayout
+			 * @return {Boolean}
+			 * @todo it's not awesomely efficient
+			 */
+			,changeLayout: function()
+			{
+				var shifted = (caps && !shift) || (shift && !caps)
+				//fuckin' awesome trick to do something like this.getElementsByTagName('button')
+				,buttons = Object.keys(this.$).filter(function(key)
+				{
+					return !!key.match(/key\-[\d]+/i);
+				})
+				,specialButtons = Object.keys(this.$).filter(function(key)
+				{
+					return !!key.match(/key\-[a-z]+(\-\d)*/i);
+				});
+
+				buttons.forEach(function(button)
+				{
+					var button = this.$[button]
+					,char;
+
+					if(shifted && alt)
+						char = button.getAttribute('data-shiftAltChar') || button.getAttribute('data-shiftChar');
+					else if(shifted)
+						char = button.getAttribute('data-shiftChar');
+					else if(alt)
+						char = button.getAttribute('data-altChar');
+
+					if(!char)
+						char = button.getAttribute('data-char');
+
+					button.innerHTML = char;
+				}, this);
+
+				specialButtons.forEach(function(button)
+				{
+					this.$[button].classList.remove('pressed');
+				}, this);
+
+				if(shift)
+				{
+					this.$['key-shift-1'].classList.add('pressed');
+					this.$['key-shift-2'].classList.add('pressed');
+				}
+
+				if(alt)
+					this.$['key-alt'].classList.add('pressed');
+
+				if(caps)
+					this.$['key-caps'].classList.add('pressed');
+
+				return true;
+			}
+		});
+	}());
+	</script>
+
+</polymer-element>

@@ -1,0 +1,9 @@
+node_modules/
+*.*~
+*.db
+.goutputstream-*
+*.bac
+*.out
+components/platform
+components/polymer
+components/core-component-page

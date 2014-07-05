@@ -1,0 +1,29 @@
+<!doctype HTML>
+<html>
+<head>
+	<title>dgui-keyboard Demo</title>
+	<script src="../platform/platform.js"></script>
+	<link rel="import" href="dgui-keyboard.html">
+</head>
+<body unresolved>
+	<h1>dGUI-keyboard</h1>
+	<p>Prosta klawiaturka ekranowa.</p>
+
+	<p>
+		<input type="text" name="input" id="input1" placeholder="Zwyczajne pole">
+		<dgui-keyboard for="input1"></dgui-keyboard>
+	</p>
+
+	<p>
+		<textarea id="area1" rows="10" placeholder="Pole wielowierszowe"></textarea>
+		<dgui-keyboard for="area1"></dgui-keyboard>
+	</p>
+
+	<form>
+		<p>
+			<input type="text" name="input" id="input2" placeholder="Zwyczajne pole w formularzu">
+			<dgui-keyboard for="input2" autohide="false"></dgui-keyboard>
+		</p>
+	</form>
+</body>
+</html>
