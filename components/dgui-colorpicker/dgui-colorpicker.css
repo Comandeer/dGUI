@@ -1,0 +1,27 @@
+﻿:host {
+  display: block;
+  background:#fff;
+}
+
+.colorwheel-wrapper
+{
+	position: relative;
+	width: 400px;
+	height: 400px;
+}
+.colorwheel, .colorwheel-indicator
+{
+	position: absolute;
+}
+.colorwheel
+{
+	background: transparent;
+}
+.colorwheel-indicator
+{
+	border: 2px #fff solid;
+	border-radius: 20px;
+	width: 10px;
+	height: 10px;
+	z-index:2;
+}

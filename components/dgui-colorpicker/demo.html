@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>dgui-colorpicker Demo</title>
+
+	<script src="../platform/platform.js"></script>
+	<link rel="import" href="dgui-colorpicker.html">
+
+</head>
+<body unresolved>
+	<p>An `dgui-colorpicker` looks like this:</p>
+
+	<dgui-colorpicker id="picker"></dgui-colorpicker>
+
+	<script>
+	document.getElementById('picker').addEventListener('change', function(e)
+	{
+		console.log(e);
+	});
+	</script>
+
+</body>
+</html>

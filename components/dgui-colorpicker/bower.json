@@ -1,0 +1,7 @@
+{
+  "name": "dgui-keyboard",
+  "private": true,
+  "dependencies": {
+    "polymer": "Polymer/polymer#master"
+  }
+}
