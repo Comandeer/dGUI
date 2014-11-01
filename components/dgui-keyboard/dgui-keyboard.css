@@ -7,16 +7,7 @@
 	user-select: none;
 }
 
-.smallMargin
-{
-	margin-left: 2em;
-}
-.bigMargin
-{
-	margin-left: 3em;
-}
-
-.keyboard
+.Keyboard
 {
 	position: absolute;
 	top: 10px;
@@ -32,11 +23,20 @@
 	white-space: pre;
 }
 
-li
+.Keyboard-elem
 {
 	list-style: none;
 	display: inline-block;
 	font-size: 16px;
+}
+
+.Keyboard-elem--smallMargin
+{
+	margin-left: 2em;
+}
+.Keyboard-elem--bigMargin
+{
+	margin-left: 3em;
 }
 
 /**
@@ -50,7 +50,7 @@ li
  */
 
 /* Base style, essential for every key. */
-.key 
+.Keyboard-key 
 {
 	margin-bottom: .5em;
 	margin-right: .5em;
@@ -71,11 +71,11 @@ li
 	text-shadow: 0 0 2px rgb(255, 255, 255);
 	box-shadow: inset 0 0 1px rgb(255, 255, 255), inset 0 0 .4em rgb(200, 200, 200), 0 .1em 0 rgb(130, 130, 130), 0 .11em 0 rgba(0, 0, 0, .4), 0 .1em .11em rgba(0, 0, 0, .9);
 }
-.key.space
+.Keyboard-key--space
 {
 	width: 35em;
 }
-.key:active, .key.pressed
+.Keyboard-key:active, .Keyboard-key--pressed
 {
 	background: linear-gradient(to bottom, #d2d2d2 0%,#ffffff 100%);
 	box-shadow: inset 0 0 1px #000, inset 0 0 .4em #ccc, 0 .1em 0 #ccc, 0 .11em 0 #ccc, 0 .1em .11em #ccc;

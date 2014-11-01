@@ -3,25 +3,28 @@
   background:#fff;
 }
 
-.colorwheel-wrapper
+.ColorPicker-colorwheel-wrapper
 {
 	position: relative;
 	width: 400px;
 	height: 400px;
 }
-.colorwheel, .colorwheel-indicator
+.ColorPicker-colorwheel, .ColorPicker-colorwheel-indicator
 {
 	position: absolute;
 }
-.colorwheel
+.ColorPicker-colorwheel
 {
-	background: transparent;
+	background: #000;
 }
-.colorwheel-indicator
+.ColorPicker-colorwheel-indicator
 {
 	border: 2px #fff solid;
 	border-radius: 20px;
 	width: 10px;
 	height: 10px;
 	z-index:2;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
 }

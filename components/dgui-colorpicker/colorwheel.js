@@ -45,7 +45,7 @@ page.evaluate(function() {
     }
 
     context.putImageData(imageData, 0, 0);
-    document.body.style.backgroundColor = 'transparent';
+    document.body.style.backgroundColor = 'black';
     document.body.style.margin = '0px';
 });
 
