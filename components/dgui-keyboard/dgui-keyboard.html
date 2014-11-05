@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../dgui/dgui.html">
 
 <!--
 Custom element displaying screen keyboard
@@ -36,14 +37,7 @@ Custom element displaying screen keyboard
 	
 	(function()
 	{
-		var isTouch = (function() //http://ctrlq.org/code/19616-detect-touch-screen-javascript also consider: http://www.stucox.com/blog/you-cant-detect-a-touchscreen/
-		{
-			return (('ontouchstart' in window)
-				|| (navigator.maxTouchPoints > 0)
-				|| (navigator.MaxTouchPoints > 0)
-				|| (navigator.msMaxTouchPoints > 0));
-		}())
-		,shift = false
+		var shift = false
 		,alt = false
 		,caps = false
 		,actions = {
@@ -72,7 +66,7 @@ Custom element displaying screen keyboard
 				,tag = i.tagName.toLowerCase();
 
 				if(tag === 'textarea')
-					return insertAtCaret.call(i, '\t');
+					return dGUI.insertAtCaret(i, '\t');
 			}
 			,enter: function()
 			{
@@ -82,13 +76,13 @@ Custom element displaying screen keyboard
 				if(tag === 'input')
 					return i.form && i.form.submit();
 				else if(tag === 'textarea')
-					return insertAtCaret.call(i, '\n');
+					return dGUI.insertAtCaret(i, '\n');
 			}
 			,delete: function()
 			{
 				var i = this.input;
 
-				deleteAtCaret.call(i);
+				dGUI.deleteAtCaret(i);
 
 				return i.focus();
 			}
@@ -100,45 +94,9 @@ Custom element displaying screen keyboard
 
 			if(alt)
 				actions.alt.apply(this, arguments);
-		}
-		//http://stackoverflow.com/questions/1865563/set-cursor-at-a-length-of-14-onfocus-of-a-textbox/1867393#1867393
-		,setCaret = function(pos)
-		{
-			if(this.createTextRange)
-			{
-				var textRange = this.createTextRange();
-
-				textRange.collapse(true);
-				textRange.moveEnd(pos);
-				textRange.moveStart(pos);
-				return textRange.select();
-			}
-			else if(this.setSelectionRange)
-				return this.setSelectionRange(pos, pos);
-
-			return false;
-		}
-		//http://jsfiddle.net/NaHTw/304/
-		,insertAtCaret = function(text)
-		{
-			var caretPos = this.selectionStart
-			,currentValue = this.value;
-
-			this.value = currentValue.substr(0, caretPos) + text + currentValue.substr(caretPos);
-
-			setCaret.call(this, caretPos + 1);
-		}
-		,deleteAtCaret = function()
-		{
-			var caretPos = this.selectionStart
-			,currentValue = this.value;
-
-			this.value = currentValue.substr(0, caretPos - 1) + currentValue.substr(caretPos);
-
-			setCaret.call(this, caretPos - 1);
 		};
-		
-		if(isTouch) //don't even register screen keyboard if there is a touchscreen
+
+		if(dGUI.isTouch) //don't even register screen keyboard if there is a touchscreen
 			return;
 
 		Polymer({
@@ -236,7 +194,7 @@ Custom element displaying screen keyboard
 				resetModifiers.apply(this, arguments);
 
 				if(i)
-					insertAtCaret.call(i, char) && i.focus();
+					dGUI.insertAtCaret(i, char) && i.focus();
 
 			}
 

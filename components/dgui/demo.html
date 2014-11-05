@@ -1,0 +1,21 @@
+<!doctype HTML>
+<html>
+<head>
+	<title>dgui Demo</title>
+	<script src="../platform/platform.js"></script>
+	<link rel="import" href="dgui.html">
+</head>
+<body unresolved>
+	<dgui-colorpicker></dgui-colorpicker>
+	<p>
+		<input type="text" name="input" id="input1" placeholder="Zwyczajne pole">
+		<dgui-keyboard for="input1"></dgui-keyboard>
+	</p>
+	<script>
+	dGUI.require(['colorpicker', 'dgui-keyboard'], function()
+	{
+		console.log('All needed components loaded');
+	});
+	</script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 {
-  "name": "dgui-colorpicker",
+  "name": "dgui",
   "private": true,
   "dependencies": {
     "polymer": "Polymer/polymer#master"

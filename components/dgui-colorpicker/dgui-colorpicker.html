@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../dgui/dgui.html">
 
 <!--
 Custom element displaying color picker
@@ -51,77 +52,7 @@ Custom element displaying color picker
 	(function()
 	{
 		var lastCursor
-		,getCursorPos = function(e, node)
-		{
-			var offset = node ? node.getBoundingClientRect() : {
-				top: 0
-				,left: 0
-			}
-			,top = e.clientY - offset.top
-			,left = e.clientX - offset.left;
-
-			if(node)
-			{
-				if(top < 0)
-					top = 0;
-				else if(top > node.clientHeight)
-					top = node.clientHeight;
-
-				if(left < 0)
-					left = 0;
-				else if(left > node.clientWidth)
-					left = node.clientWidth;
-			}
-
-			return {
-				top: top
-				,left: left
-			};
-		}
-		,dragTimer
-		,dragFn //* bind
-		,throttle = function(fn, threshhold, scope)
-		{
-			threshhold || (threshhold = 250);
-
-			var last
-			,deferTimer;
-
-			return function()
-			{
-				var context = scope || this
-				,now = +new Date
-				,args = arguments;
-
-				if (last && now < last + threshhold)
-				{
-					clearTimeout(deferTimer);
-
-					deferTimer = setTimeout(function()
-					{
-						last = now;
-						fn.apply(context, args);
-					}, threshhold);
-				}
-				else
-				{
-					last = now;
-					fn.apply(context, args);
-				}
-			};
-		}
-		,fireOnce = function(element, type, fn, scope)
-		{
-			element.addEventListener(type, function f(e)
-			{
-				var context = scope || this
-				,args = arguments;
-
-				fn.apply(context, args);
-
-				element.removeEventListener(type, f);
-			});
-		};
+		,dragFn; //* bind
 
 		Polymer({
 			/**
@@ -135,7 +66,7 @@ Custom element displaying color picker
 				var ctx = this.$.colorwheel.getContext('2d')
 				,img = new Image();
 
-				img.src = 'colorwheel.png';
+				img.src = dGUI.path + 'dgui-colorpicker/colorwheel.png'; //TODO: resolve it somehow…
 
 				console.log(ctx);
 				img.onload = function()
@@ -160,7 +91,7 @@ Custom element displaying color picker
 			{
 				var canvas = this.$.colorwheel
 				,indicator = this.$['colorwheel-indicator']
-				,cursor = getCursorPos(e, canvas);
+				,cursor = dGUI.getCursorPos(e, canvas);
 
 				var color = this.getColorAtPoint(cursor);
 				this.changeColor(color);
@@ -177,15 +108,14 @@ Custom element displaying color picker
 			 */
 			,colorIndicatorDrag: function(e)
 			{
-				console.log('start dragging');
 				this.colorWheelClick(e);
 
 				if(!dragFn)
-					dragFn = throttle(this.colorIndicatorDragging, 100, this);;
+					dragFn = dGUI.throttle(this.colorIndicatorDragging, 100, this);;
 
 				this.$.colorwheel.addEventListener('mousemove', dragFn);
 
-				fireOnce(window, 'mouseup', this.colorIndicatorDrop, this);
+				dGUI.fireOnce(window, 'mouseup', this.colorIndicatorDrop, this);
 			}
 
 			/**
@@ -196,7 +126,6 @@ Custom element displaying color picker
 			 */
 			,colorIndicatorDragging: function(e)
 			{
-				console.log('dragging');
 				this.colorWheelClick(e);
 			}
 
@@ -208,7 +137,6 @@ Custom element displaying color picker
 			 */
 			,colorIndicatorDrop: function(e)
 			{
-				console.log('stop dragging');
 				this.colorWheelClick(e);
 
 				this.$.colorwheel.removeEventListener('mousemove', dragFn);
@@ -248,7 +176,6 @@ Custom element displaying color picker
 			 */
 			,changeColor: function(color, hsl)
 			{
-				type =
 				color = Array.prototype.slice.call(color);
 
 				var hsl

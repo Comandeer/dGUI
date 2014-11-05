@@ -1,0 +1,28 @@
+{
+  "name": "dGUI",
+  "version": "0.0.0",
+  "description": "declarative Graphical User Interface",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Comandeer/dGUI.git"
+  },
+  "keywords": [
+    "dGUI"
+  ],
+  "author": "Comandeer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Comandeer/dGUI/issues"
+  },
+  "homepage": "https://github.com/Comandeer/dGUI",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-ftp-deploy": "^0.1.9",
+    "load-grunt-config": "^0.16.0",
+    "time-grunt": "^1.0.0"
+  }
+}
