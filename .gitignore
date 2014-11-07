@@ -4,7 +4,13 @@ node_modules/
 .goutputstream-*
 *.bac
 *.out
-components/platform
-components/polymer
 components/core-component-page
+components/NodeBind
+components/observe-js
+components/polymer
+components/polymer-expressions
+components/polymer-gestures
+components/TemplateBinding
+components/URL
+components/webcomponentsjs
 .ftppass
