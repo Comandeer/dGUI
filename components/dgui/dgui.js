@@ -39,6 +39,12 @@
 		,load = function()
 		{
 			console.log('Done importing ' + this.href);
+
+			global.dispatchEvent(new CustomEvent('dGUIComponentLoaded', {
+				detail: {
+					URI: this.href
+				}
+			}));
 			
 			++i;
 			if(i == all)
@@ -47,6 +53,12 @@
 		,error = function()
 		{
 			console.log('Error while importing ' + this.href);
+
+			global.dispatchEvent(new CustomEvent('dGUIComponentError', {
+				detail: {
+					URI: this.href
+				}
+			}));
 
 			++i;
 			if(i == all)
@@ -202,6 +214,9 @@
 	};
 		
 	global.dGUI = dGUI; //yep, it somehow sucks
+
+	//ok, so now we can emit event that dGUI is loaded, yay :D
+	global.dispatchEvent(new CustomEvent('dGUILoaded'));
 
 	return dGUI;
 }));

@@ -34,8 +34,13 @@ Custom element displaying screen keyboard
 	</template>
 
 	<script>
-	
-	(function()
+	(function(root, factory)
+	{
+		if(root.dGUI)
+			return factory();
+
+		root.addEventListener('dGUILoaded', factory);
+	}(this, function()
 	{
 		var shift = false
 		,alt = false
@@ -286,7 +291,7 @@ Custom element displaying screen keyboard
 				return true;
 			}
 		});
-	}());
+	}));
 	</script>
 
 </polymer-element>

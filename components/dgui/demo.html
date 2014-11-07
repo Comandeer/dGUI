@@ -12,9 +12,13 @@
 		<dgui-keyboard for="input1"></dgui-keyboard>
 	</p>
 	<script>
-	dGUI.require(['colorpicker', 'dgui-keyboard'], function()
+	window.addEventListener('dGUILoaded', function()
 	{
-		console.log('All needed components loaded');
+		console.log('dGUILoaded fired');
+		dGUI.require(['colorpicker', 'dgui-keyboard'], function()
+		{
+			console.log('All needed components loaded');
+		});
 	});
 	</script>
 </body>

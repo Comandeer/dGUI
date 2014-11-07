@@ -49,8 +49,16 @@ Custom element displaying color picker
 	</template>
 
 	<script>
-	(function()
+	//derived from UMD pattern - it sucks, but it also works!
+	(function(root, factory)
 	{
+		if(root.dGUI)
+			return factory();
+
+		root.addEventListener('dGUILoaded', factory);
+	}(this, function()
+	{
+		console.log(dGUI);
 		var lastCursor
 		,dragFn; //* bind
 
@@ -391,7 +399,7 @@ Custom element displaying color picker
 				] : null;
 			}
 		});
-	}());
+	}));
 	</script>
 
 </polymer-element>
