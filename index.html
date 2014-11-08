@@ -2,7 +2,7 @@
 	<html lang="pl" dir="ltr">
 		<head>
 			<meta charset="UTF-8">
-			<meta name="viewport" content="width=device-width,inital-scale=1.0">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			<title>dGUI</title>
 			<!--[if lt IE 9]>
 				<script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -15,7 +15,8 @@
 			</header>
 			<main role="main" class="content">
 				<h2 id="lista">Lista komponentów</h2>
-				<table class="zebra">
+				<p class="warning">Cache dla wszystkich komponentów jest wyłączony, co wiąże się z przeładowaniem <b>kilkudziesięciu</b> plików przy każdym żądaniu. Jeśli nie chcesz marnować transferu, po prostu wyjdź ;)</p>
+				<table class="zebra" aria-labelledby="lista">
 					<thead>
 						<tr>
 							<th scope="col">Nazwa</th>
