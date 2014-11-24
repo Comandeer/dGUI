@@ -102,7 +102,12 @@ Custom element displaying screen keyboard
 		};
 
 		if(dGUI.isTouch) //don't even register screen keyboard if there is a touchscreen
-			return;
+			return Polymer({
+				ready: function()
+				{
+					this.hidden = true;
+				}
+			});
 
 		Polymer({
 			/**
