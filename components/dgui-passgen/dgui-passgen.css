@@ -1,0 +1,17 @@
+﻿:host {
+  display: block;
+  background:#fff;
+}
+.PassGen-customizator
+{
+	display: none;
+}
+:host([customizable]) .PassGen-customizator
+{
+	display: block;
+}
+
+.PassGen-customizator-options-option
+{
+	list-style: none;
+}

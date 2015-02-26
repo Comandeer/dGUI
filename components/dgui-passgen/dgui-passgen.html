@@ -1,0 +1,143 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../dgui/dgui.html">
+
+<!--
+Custom element displaying form used to generate passwords
+
+##### Example
+
+	<dgui-passgen></dgui-passgen>
+
+@element dgui-passgen
+@blurb Custom element displaying form used to generate passwords
+@status Alpha
+-->
+<polymer-element name="dgui-passgen" attributes="min customizable">
+
+	<template>
+
+	<link href="dgui-passgen.css" rel="stylesheet">
+
+	<form action="#" id="generator" class="PassGen-form">
+		<p><label>Ilość znaków: <input type="number" name="length" min="{{min}}" value="{{min}}"></label></p>
+		
+		<div id="customize" class="PassGen-customizator">
+			<p id="allowedChars">Zakres znaków, wśród których ma być losowane:</p>
+			<ul class="PassGen-customizator-options" aria-labelledby="allowedChars">
+				<li class="PassGen-customizator-options-option">
+					<label><input type="checkbox" name="chars" id="chars1" value="letters" checked disabled> małe litery</label>
+				</li>
+				<li class="PassGen-customizator-options-option">
+					<label><input type="checkbox" name="chars" id="chars2" value="caps" checked> duże litery</label>
+				</li>
+				<li class="PassGen-customizator-options-option">
+					<label><input type="checkbox" name="chars" id="chars3" value="digits" checked> cyfry</label>
+				</li>
+				<li class="PassGen-customizator-options-option">
+					<label><input type="checkbox" name="chars" id="chars4" value="special" checked> znaki specjalne</label>
+				</li>
+			</ul>
+		</div>
+
+		<p class="PassGen-result">Wygenerowane hasło: <output name="generatedPassword" class="PassGen-result-output"></p>
+
+		<button type="submit" class="PassGen-form-action">Generuj hasło</button>
+	</form>
+
+	</template>
+
+	<script>
+	//derived from UMD pattern - it sucks, but it also works!
+	(function(root, factory)
+	{
+		if(root.dGUI)
+			return factory();
+
+		root.addEventListener('dGUILoaded', factory);
+	}(this, function()
+	{
+		var chars = {
+			letters: 'qwertyuiopasdfghjklzxcvbn'
+			,caps: 'QWERTYUIOPASDFGHJKLZXCVBNM'
+			,digits: '1234567890'
+			,special: '`~!@#$%^&*()-_=+[{]}\\|;:\'\",<.>/?'
+		};
+
+		Polymer({
+			/**
+			 * The `min` attribute indicates the minimum length of password being generated
+			 * 
+			 * @attribute min
+			 * @type integer
+			 */
+			min: 8
+
+			/**
+			 * The `customizable` attribute indicates if user could switch which chars should be used to generate password
+			 * 
+			 * @attribute customizable
+			 * @type boolean
+			 */
+			,customizable: false
+
+			/**
+			 * Initializes passgen
+			 * 
+			 * 
+			 * @method ready
+			 */
+			,ready: function()
+			{
+				this.$.generator.addEventListener('submit', this.generate.bind(this));
+			}
+
+			/**
+			 * Handles form submit
+			 *
+			 * @method generate
+			 * @event submit
+			 */
+			,generate: function(e)
+			{
+				e.preventDefault();
+
+				var form = this.$.generator
+				,elems = form.elements
+				//,allowed = form.elements['chars']
+				,output = elems.generatedPassword
+				,i = +form.length.value
+				,range = ''
+				,pass = '';
+
+				/*not working, yay!
+				[].forEach.call(allowed, function(tmp)
+				{
+					console.log(chars[tmp.value]);
+					if(tmp.checked)
+						range += chars[tmp.value];
+				});*/
+
+				//it's one of the ugliest hacks I've ever created…
+				for(var x in this.$)
+				{
+					if(!this.$.hasOwnProperty(x) ||x.indexOf('chars') !== 0)
+						continue;
+
+					var tmp = this.$[x];
+
+					if(tmp.checked)
+						range += chars[tmp.value];
+				}
+
+				while(i--)
+					pass += dGUI.arrayRand(range);
+
+				output.value = pass;
+
+				this.fire('generate', {password: pass});
+			}
+		});
+	}));
+	</script>
+
+</polymer-element>

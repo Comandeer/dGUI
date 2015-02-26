@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>dgui-passgen Demo</title>
+
+	<script src="../webcomponentsjs/webcomponents.js"></script>
+	<link rel="import" href="dgui-passgen.html">
+
+</head>
+<body unresolved>
+	<p>An `dgui-passgen` looks like this:</p>
+
+	<dgui-passgen id="passgen" min="6"></dgui-passgen>
+
+	<dgui-passgen id="passgen2" min="8" customizable></dgui-passgen>
+
+	<script>
+	document.getElementById('passgen').addEventListener('generate', function(e)
+	{
+		console.log('Wygenerowane hasło to: ', e.detail.password);
+	});
+	</script>
+
+</body>
+</html>

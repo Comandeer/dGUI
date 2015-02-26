@@ -212,6 +212,29 @@
 
 		dGUI.setCaret(elem, caretPos - 1);
 	};
+
+	//http://javascript.pl/articles/losowa-liczba-z-podanego-zakresu.html
+	dGUI.rand = function(min, max)
+	{
+		min = parseInt(min, 10);
+		max = parseInt(max, 10);
+
+		if(min > max)
+		{
+			var tmp = min;
+		
+			min = max;
+			max = tmp;
+		}
+
+		return Math.floor(Math.random() * (max - min + 1) + min);
+	};
+
+	//array & array-like rand (works also on strings)
+	dGUI.arrayRand = function(array)
+	{
+		return array[this.rand(0, array.length - 1)];
+	};
 		
 	global.dGUI = dGUI; //yep, it somehow sucks
 

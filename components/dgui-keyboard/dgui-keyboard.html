@@ -105,7 +105,7 @@ Custom element displaying screen keyboard
 			return Polymer({
 				ready: function()
 				{
-					this.hidden = true;
+					this.parentNode.removeChild(this);
 				}
 			});
 
@@ -130,7 +130,7 @@ Custom element displaying screen keyboard
 			 * Indticates if the keyboard should be closed by clicking outside it or input controlled by it
 			 *
 			 * @attribute autohide
-			 * @type string
+			 * @type boolean
 			 */
 			,autohide: true
 

@@ -58,7 +58,6 @@ Custom element displaying color picker
 		root.addEventListener('dGUILoaded', factory);
 	}(this, function()
 	{
-		console.log(dGUI);
 		var lastCursor
 		,dragFn; //* bind
 
@@ -76,7 +75,6 @@ Custom element displaying color picker
 
 				img.src = dGUI.path + 'dgui-colorpicker/colorwheel.png'; //TODO: resolve it somehow…
 
-				console.log(ctx);
 				img.onload = function()
 				{
 					ctx.drawImage(img, 0, 0);

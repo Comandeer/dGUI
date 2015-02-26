@@ -1,0 +1,7 @@
+{
+  "name": "dgui-passgen",
+  "private": true,
+  "dependencies": {
+    "polymer": "Polymer/polymer#master"
+  }
+}
