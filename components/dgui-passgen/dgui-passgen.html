@@ -39,7 +39,7 @@ Custom element displaying form used to generate passwords
 			</ul>
 		</div>
 
-		<p class="PassGen-result">Wygenerowane hasło: <output name="generatedPassword" class="PassGen-result-output"></p>
+		<p class="PassGen-result">Wygenerowane hasło: <output id="result" name="generatedPassword" class="PassGen-result-output"></p>
 
 		<button type="submit" class="PassGen-form-action">Generuj hasło</button>
 	</form>
@@ -104,7 +104,7 @@ Custom element displaying form used to generate passwords
 				var form = this.$.generator
 				,elems = form.elements
 				//,allowed = form.elements['chars']
-				,output = elems.generatedPassword
+				,output = this.$.result
 				,i = +form.length.value
 				,range = ''
 				,pass = '';
